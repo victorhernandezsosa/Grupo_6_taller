@@ -1,0 +1,34 @@
+@import url('./main-layout.css');
+@import url('./views/registrode-clientes-view.css');
+@import url('./views/consultade-clientes-view.css');
+@import url('./views/registrode-vehículo-view.css');
+@import url('./views/registro-de-empleados-view.css');
+@import url('./views/factura-view.css');
+@import url('@fontsource/poppins/index.css');    html {
+      --lumo-line-height-m: 1.4;
+      --lumo-line-height-s: 1.2;
+      --lumo-line-height-xs: 1.1;
+      --lumo-border-radius-s: calc(var(--lumo-size-m) / 6);
+      --lumo-border-radius-m: calc(var(--lumo-size-m) / 2);
+      --lumo-border-radius-l: var(--lumo-size-m);
+      --lumo-space-xl: 1.875rem;
+      --lumo-space-l: 1.25rem;
+      --lumo-space-m: 0.625rem;
+      --lumo-space-s: 0.3125rem;
+      --lumo-space-xs: 0.1875rem;
+--lumo-font-family: Poppins;
+
+    }
+
+    [theme~="dark"] {
+      --lumo-base-color: rgba(20, 21, 38, 1);
+      --lumo-primary-color: hsl(145, 95%, 43%);
+      --lumo-primary-color-50pct: hsla(145, 95%, 43%, 0.5);
+      --lumo-primary-color-10pct: hsla(145, 95%, 43%, 0.1);
+      --lumo-success-color: rgb(179, 84, 30);
+      --lumo-success-color-50pct: rgba(179, 84, 30, 0.5);
+      --lumo-success-color-10pct: rgba(179, 84, 30, 0.1);
+      --lumo-success-text-color: rgb(179, 84, 30);
+      --lumo-primary-text-color: rgb(3, 201, 136);
+
+    }
