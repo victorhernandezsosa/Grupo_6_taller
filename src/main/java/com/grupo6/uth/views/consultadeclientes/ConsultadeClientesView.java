@@ -84,8 +84,8 @@ public class ConsultadeClientesView extends Div {
 
     public static class Filters extends Div implements Specification<SamplePerson> {
 
-        private final TextField name = new TextField("Name");
-        private final TextField phone = new TextField("Phone");
+        private final TextField name = new TextField("Nombre");
+        private final TextField telefono = new TextField("Telefon");
         private final DatePicker startDate = new DatePicker("Date of Birth");
         private final DatePicker endDate = new DatePicker();
         private final MultiSelectComboBox<String> occupations = new MultiSelectComboBox<>("Occupation");
@@ -109,7 +109,7 @@ public class ConsultadeClientesView extends Div {
             resetBtn.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
             resetBtn.addClickListener(e -> {
                 name.clear();
-                phone.clear();
+                telefono.clear();
                 startDate.clear();
                 endDate.clear();
                 occupations.clear();
@@ -124,7 +124,7 @@ public class ConsultadeClientesView extends Div {
             actions.addClassName(LumoUtility.Gap.SMALL);
             actions.addClassName("actions");
 
-            add(name, phone, createDateRangeFilter(), occupations, roles, actions);
+            add(name, telefono, createDateRangeFilter(), occupations, roles, actions);
         }
 
         private Component createDateRangeFilter() {
@@ -161,11 +161,11 @@ public class ConsultadeClientesView extends Div {
                         lowerCaseFilter + "%");
                 predicates.add(criteriaBuilder.or(firstNameMatch, lastNameMatch));
             }
-            if (!phone.isEmpty()) {
+            if (!telefono.isEmpty()) {
                 String databaseColumn = "phone";
                 String ignore = "- ()";
 
-                String lowerCaseFilter = ignoreCharacters(ignore, phone.getValue().toLowerCase());
+                String lowerCaseFilter = ignoreCharacters(ignore, telefono.getValue().toLowerCase());
                 Predicate phoneMatch = criteriaBuilder.like(
                         ignoreCharacters(ignore, criteriaBuilder, criteriaBuilder.lower(root.get(databaseColumn))),
                         "%" + lowerCaseFilter + "%");
