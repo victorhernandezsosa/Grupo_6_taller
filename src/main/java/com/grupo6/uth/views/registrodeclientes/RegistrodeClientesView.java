@@ -29,10 +29,10 @@ import com.vaadin.flow.router.RouteAlias;
 @Uses(Icon.class)
 public class RegistrodeClientesView extends Div {
 
-    private TextField firstName = new TextField("First name");
-    private TextField lastName = new TextField("Last name");
-    private EmailField email = new EmailField("Email address");
-    private DatePicker dateOfBirth = new DatePicker("Birthday");
+    private TextField firstName = new TextField("Nombre");
+    private TextField lastName = new TextField("Apellido");
+    private TextField identidad = new TextField("Identidad");
+    private TextField dateOfBirth = new TextField("Birthday");
     private PhoneNumberField phone = new PhoneNumberField("Phone number");
     private TextField occupation = new TextField("Occupation");
 
@@ -69,8 +69,8 @@ public class RegistrodeClientesView extends Div {
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email, occupation);
+        identidad.setErrorMessage("Please enter a valid email address");
+        formLayout.add(firstName, lastName, dateOfBirth, phone, identidad, occupation);
         return formLayout;
     }
 
