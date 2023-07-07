@@ -43,8 +43,8 @@ public class RegistrodeVehículoView extends Div implements BeforeEnterObserver 
     private TextField servicio;
     private TextField costo;
 
-    private final Button cancel = new Button("Cancel");
-    private final Button save = new Button("Save");
+    private final Button cancel = new Button("Cancelar");
+    private final Button save = new Button("Guardar");
 
 
 
@@ -139,8 +139,8 @@ public class RegistrodeVehículoView extends Div implements BeforeEnterObserver 
         marca = new TextField("Marca");
         modelo = new TextField("Modelo");
         placa = new TextField("Placa");
-        fechaentrada = new DatePicker("Fechaentrada");
-        fechasalida = new DatePicker("Fechasalida");
+        fechaentrada = new DatePicker("Fecha de entrada");
+        fechasalida = new DatePicker("Fecha de salida");
         servicio = new TextField("Servicio");
         costo = new TextField("Costo");
         formLayout.add(marca, modelo, placa, fechaentrada, fechasalida, servicio, costo);

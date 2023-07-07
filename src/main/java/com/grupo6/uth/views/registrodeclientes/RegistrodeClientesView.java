@@ -62,7 +62,7 @@ public class RegistrodeClientesView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("Personal information");
+        return new H3("Agregar Cliente");
     }
 
     private Component createFormLayout() {

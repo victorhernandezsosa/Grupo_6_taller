@@ -39,8 +39,8 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
     private TextField apellido;
     private TextField sueldo;
 
-    private final Button cancel = new Button("Cancel");
-    private final Button save = new Button("Save");
+    private final Button cancel = new Button("Cancelar");
+    private final Button save = new Button("Guardar");
 
  
 
@@ -136,7 +136,6 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
 
         FormLayout formLayout = new FormLayout();
         identidad = new TextField("Identidad");
-        identidad.setPlaceholder("123456789123");
         nombre = new TextField("Nombre");
         apellido = new TextField("Apellido");
         sueldo = new TextField("Sueldo");
