@@ -1,7 +1,6 @@
 package com.grupo6.uth.views.registrodeempleados;
 
 import com.grupo6.uth.data.entity.Empleado;
-import com.grupo6.uth.data.service.EmpleadoService;
 import com.grupo6.uth.views.MainLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -16,8 +15,6 @@ import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -45,14 +42,13 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
     private final Button cancel = new Button("Cancel");
     private final Button save = new Button("Save");
 
-    private final BeanValidationBinder<Empleado> binder;
+ 
 
     private Empleado empleado;
 
-    private final EmpleadoService empleadoService;
 
-    public RegistroDeEmpleadosView(EmpleadoService empleadoService) {
-        this.empleadoService = empleadoService;
+    public RegistroDeEmpleadosView() {
+        
         addClassNames("registro-de-empleados-view");
 
         // Create UI
@@ -68,10 +64,10 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
         grid.addColumn("nombre").setAutoWidth(true);
         grid.addColumn("apellido").setAutoWidth(true);
         grid.addColumn("sueldo").setAutoWidth(true);
-        grid.setItems(query -> empleadoService.list(
+       /* grid.setItems(query -> empleadoService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);*/
 
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
@@ -83,13 +79,8 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
             }
         });
 
-        // Configure Form
-        binder = new BeanValidationBinder<>(Empleado.class);
-
-        // Bind fields. This is where you'd define e.g. validation rules
-        binder.forField(sueldo).withConverter(new StringToIntegerConverter("Only numbers are allowed")).bind("sueldo");
-
-        binder.bindInstanceFields(this);
+ 
+       
 
         cancel.addClickListener(e -> {
             clearForm();
@@ -101,8 +92,7 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
                 if (this.empleado == null) {
                     this.empleado = new Empleado();
                 }
-                binder.writeBean(this.empleado);
-                empleadoService.update(this.empleado);
+               
                 clearForm();
                 refreshGrid();
                 Notification.show("Data updated");
@@ -112,7 +102,7 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
                         "Error updating the data. Somebody else has updated the record while you were making changes.");
                 n.setPosition(Position.MIDDLE);
                 n.addThemeVariants(NotificationVariant.LUMO_ERROR);
-            } catch (ValidationException validationException) {
+            } catch (Exception e1 ) {
                 Notification.show("Failed to update the data. Check again that all values are valid");
             }
         });
@@ -120,9 +110,9 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        Optional<Long> empleadoId = event.getRouteParameters().get(EMPLEADO_ID).map(Long::parseLong);
+      Optional<Long> empleadoId = event.getRouteParameters().get(EMPLEADO_ID).map(Long::parseLong);
         if (empleadoId.isPresent()) {
-            Optional<Empleado> empleadoFromBackend = empleadoService.get(empleadoId.get());
+           /* Optional<Empleado> empleadoFromBackend = empleadoService.get(empleadoId.get());
             if (empleadoFromBackend.isPresent()) {
                 populateForm(empleadoFromBackend.get());
             } else {
@@ -132,7 +122,7 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
                 // refresh grid
                 refreshGrid();
                 event.forwardTo(RegistroDeEmpleadosView.class);
-            }
+            }*/
         }
     }
 
@@ -184,7 +174,7 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
 
     private void populateForm(Empleado value) {
         this.empleado = value;
-        binder.readBean(this.empleado);
+        
 
     }
 }
