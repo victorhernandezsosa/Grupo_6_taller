@@ -136,6 +136,7 @@ public class RegistroDeEmpleadosView extends Div implements BeforeEnterObserver 
 
         FormLayout formLayout = new FormLayout();
         identidad = new TextField("Identidad");
+        identidad.setPlaceholder("123456789123");
         nombre = new TextField("Nombre");
         apellido = new TextField("Apellido");
         sueldo = new TextField("Sueldo");

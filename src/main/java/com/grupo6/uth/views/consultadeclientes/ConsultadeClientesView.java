@@ -87,12 +87,12 @@ public class ConsultadeClientesView extends Div {
             addClassName("filter-layout");
             addClassNames(LumoUtility.Padding.Horizontal.LARGE, LumoUtility.Padding.Vertical.MEDIUM,
                     LumoUtility.BoxSizing.BORDER);
-            
+            identidad.setPlaceholder("First or last name");
 
 
 
             // Action buttons
-            Button resetBtn = new Button("Borrar");
+            Button resetBtn = new Button("Reset");
             resetBtn.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
             resetBtn.addClickListener(e -> {
                 identidad.clear();
@@ -101,7 +101,7 @@ public class ConsultadeClientesView extends Div {
                 telefono.clear();
                 onSearch.run();
             });
-            Button searchBtn = new Button("Buscar");
+            Button searchBtn = new Button("Search");
             searchBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
             searchBtn.addClickListener(e -> onSearch.run());
 
@@ -121,9 +121,9 @@ public class ConsultadeClientesView extends Div {
             if (!identidad.isEmpty()) {
                 String lowerCaseFilter = identidad.getValue().toLowerCase();
                 
-                Predicate nombreMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("Nombre")),
+                Predicate nombreMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("nombre")),
                         lowerCaseFilter + "%");
-                Predicate apellidoMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("Apellido")),
+                Predicate apellidoMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("apellido")),
                         lowerCaseFilter + "%");
                 predicates.add(criteriaBuilder.or(nombreMatch, apellidoMatch));
             }
